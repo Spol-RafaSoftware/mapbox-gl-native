@@ -16,6 +16,8 @@
 #pragma GCC diagnostic pop
 
 namespace node_mbgl {
+    
+class NodeRendererFrontend;
 
 class NodeBackend : public mbgl::HeadlessBackend {
 public:
