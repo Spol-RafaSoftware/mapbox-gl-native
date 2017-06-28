@@ -22,12 +22,12 @@ public:
 
     mbgl::Size framebufferSize() const;
 
+
     // mbgl::View implementation.
     void bind() final;
 
     // mbgl::Backend implementation.
     void updateAssumedState() final;
-    void invalidate() final;
     void activate() final {}
     void deactivate() final {}
 
@@ -63,9 +63,14 @@ private:
 
 public slots:
     void connectionEstablished();
+    void invalidate();
+    void render();
 
 signals:
     void needsRendering();
     void mapChanged(QMapboxGL::MapChange);
     void copyrightsChanged(const QString &copyrightsHtml);
+    
+    // Internal signal to start rendering
+    void renderRequested();
 };
