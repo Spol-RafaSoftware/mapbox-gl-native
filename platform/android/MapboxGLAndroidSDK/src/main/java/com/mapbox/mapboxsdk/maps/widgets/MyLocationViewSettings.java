@@ -5,9 +5,9 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 
+import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.constants.MyLocationTracking;
 import com.mapbox.mapboxsdk.maps.FocalPointChangeListener;
-import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.maps.MapboxMapOptions;
 import com.mapbox.mapboxsdk.maps.Projection;
 
@@ -16,6 +16,7 @@ import com.mapbox.mapboxsdk.maps.Projection;
  */
 public class MyLocationViewSettings {
 
+  private static final int UNDEFINED_FOREGROUND_TINT_COLOR = -1;
   private Projection projection;
   private MyLocationView myLocationView;
   private FocalPointChangeListener focalPointChangeListener;
@@ -152,7 +153,9 @@ public class MyLocationViewSettings {
    */
   public void setForegroundTintColor(@ColorInt int foregroundTintColor) {
     this.foregroundTintColor = foregroundTintColor;
-    myLocationView.setForegroundDrawableTint(foregroundTintColor);
+    if (foregroundTintColor != UNDEFINED_FOREGROUND_TINT_COLOR) {
+      myLocationView.setForegroundDrawableTint(foregroundTintColor);
+    }
   }
 
   /**
